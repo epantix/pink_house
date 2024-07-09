@@ -10,7 +10,7 @@ function OnCloseButtonClicked() {
     examplePanel.DeleteAsync(0);
 
     // Send event to server
-    GameEvents.SendCustomGameEventToServer("ui_panel_closed", {});
+    // GameEvents.SendCustomGameEventToServer("ui_panel_closed", {});
 }
 
 GameEvents.Subscribe("example_event", (data: NetworkedData<ExampleEventData>) => {
@@ -34,7 +34,7 @@ GameEvents.Subscribe("example_event", (data: NetworkedData<ExampleEventData>) =>
  */
 function toArray<T>(obj: Record<number, T>): T[] {
     const result = [];
-    
+
     let key = 1;
     while (obj[key]) {
         result.push(obj[key]);
@@ -43,3 +43,5 @@ function toArray<T>(obj: Record<number, T>): T[] {
 
     return result;
 }
+
+OnCloseButtonClicked()

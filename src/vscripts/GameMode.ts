@@ -52,6 +52,12 @@ export class GameMode {
         GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 3);
 
         GameRules.SetShowcaseTime(0);
+        GameRules.SetStrategyTime(0);
+        GameRules.SetPreGameTime(0);
+        GameRules.SetPostGameTime(10);
+        GameRules.SetHeroSelectPenaltyTime(0);
+
+
         GameRules.SetHeroSelectionTime(heroSelectionTime);
     }
 
@@ -61,15 +67,28 @@ export class GameMode {
         // Add 4 bots to lobby in tools
         if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
             for (let i = 0; i < 4; i++) {
-                Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
+                // Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
+                // add most  agressive bots
+                Tutorial.AddBot("npc_dota_hero_lina", "hard", "mid", false);
             }
         }
 
         if (state === GameState.CUSTOM_GAME_SETUP) {
             // Automatically skip setup in tools
             if (IsInToolsMode()) {
-                Timers.CreateTimer(3, () => {
+                Timers.CreateTimer(0.3, () => {
                     GameRules.FinishCustomGameSetup();
+                });
+            }
+        }
+        if (state === GameState.HERO_SELECTION) {
+            if (IsInToolsMode()) {
+                Timers.CreateTimer(0.3, () => {
+                    // pick random hero for player
+                    const player = PlayerResource.GetPlayer(0);
+                    if (player) {
+                        player.MakeRandomHeroSelection();
+                    }
                 });
             }
         }
