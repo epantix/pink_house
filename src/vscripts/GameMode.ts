@@ -1,5 +1,7 @@
 import { reloadable } from "./lib/tstl-utils";
 import { modifier_panic } from "./modifiers/modifier_panic";
+import { RuneSpawner } from "./rune_spawner";
+import { Wave } from "./wave";
 
 const heroSelectionTime = 20;
 
@@ -11,6 +13,8 @@ declare global {
 
 @reloadable
 export class GameMode {
+    runeSpawner = new RuneSpawner()
+
     public static Precache(this: void, context: CScriptPrecacheContext) {
         PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", context);
         PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context);
@@ -95,6 +99,7 @@ export class GameMode {
 
         // Start game once pregame hits
         if (state === GameState.PRE_GAME) {
+            print("Pre-game phase started!");
             Timers.CreateTimer(0.2, () => this.StartGame());
         }
     }
@@ -103,6 +108,22 @@ export class GameMode {
         print("Game starting!");
 
         // Do some stuff here
+        Timers.CreateTimer(1, () => {
+            let waver1 = new Wave("radiant_spawn_1", "radiant_spawn_1_10", "npc_dota_roshan_halloween_minion", DotaTeam.GOODGUYS)
+            return 5;
+        })
+        Timers.CreateTimer(1, () => {
+            for (let i = 0; i < 4; i++)
+                new Wave("dire_spawn_1", "dire_spawn_1_1", "npc_dota_creep_badguys_melee", DotaTeam.BADGUYS)
+            return 45;
+        })
+
+        Timers.CreateTimer(5, () => {
+            for (let i = 0; i < 20; i++) {
+                this.runeSpawner.spawnRune();
+            }
+            return 5.0; // Повторяем таймер каждые 10 секунд
+        });
     }
 
     // Called on script_reload
@@ -123,4 +144,38 @@ export class GameMode {
             }
         }
     }
+
+
+    // private SpawnCouriersForHeroes(): void {
+    //     // Получаем список всех героев
+    //     const heroes = PlayerResource.GetAllHer();
+
+    //     // Перебираем всех героев
+    //     heroes.forEach(hero => {
+    //         // Проверяем, есть ли у героя курица
+    //         if (!this.DoesHeroHaveCourier(hero)) {
+    //             // Создаем курицу для героя
+    //             this.CreateCourierForHero(hero);
+    //         }
+    //     });
+    // }
+
+    // private DoesHeroHaveCourier(hero: CDOTA_BaseNPC_Hero): boolean {
+    //     // Здесь должна быть логика для проверки наличия курицы у героя
+    //     // Это может быть реализовано через проверку определенного предмета или переменной состояния
+    //     return false; // Пример возвращает false для демонстрации
+    // }
+
+    // private CreateCourierForHero(hero: CDOTA_BaseNPC_Hero): void {
+    //     // Создаем курицу
+    //     const courier = CreateUnitByName("npc_dota_courier", hero.GetAbsOrigin(), true, hero, null, hero.GetTeam());
+    //     // Назначаем героя владельцем курицы
+    //     courier.SetControllableByPlayer(hero.GetPlayerID(), false);
+    // }
+
+
+
+
+
+
 }
