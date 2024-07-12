@@ -24,7 +24,7 @@ export class RuneSpawner {
 
     spawnRuneAtPoint(point: Vector) {
         // Логика создания руны в данной точке.
-        print(`Создание руны в точке (${point.x}, ${point.y}, ${point.z})`);
+        // print(`Создание руны в точке (${point.x}, ${point.y}, ${point.z})`);
         const rune = CreateRune(point, Math.floor(Math.random() * 10))
 
         Timers.CreateTimer(10, () => {
@@ -35,7 +35,7 @@ export class RuneSpawner {
     }
 
     spawnRune() {
-        print(`Создание руны`);
+        // print(`Создание руны`);
         for (let i = 0; i < 1000; i++) {
             let point = this.generateRandomPointWithinBounds();
             if (!this.isPointFree(point)) continue;

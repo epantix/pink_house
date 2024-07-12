@@ -85,17 +85,17 @@ export class GameMode {
                 });
             }
         }
-        if (state === GameState.HERO_SELECTION) {
-            if (IsInToolsMode()) {
-                Timers.CreateTimer(0.3, () => {
-                    // pick random hero for player
-                    const player = PlayerResource.GetPlayer(0);
-                    if (player) {
-                        player.MakeRandomHeroSelection();
-                    }
-                });
-            }
-        }
+        // if (state === GameState.HERO_SELECTION) {
+        //     if (IsInToolsMode()) {
+        //         Timers.CreateTimer(0.3, () => {
+        //             // pick random hero for player
+        //             const player = PlayerResource.GetPlayer(0);
+        //             if (player) {
+        //                 player.MakeRandomHeroSelection();
+        //             }
+        //         });
+        //     }
+        // }
 
         // Start game once pregame hits
         if (state === GameState.PRE_GAME) {
@@ -113,9 +113,16 @@ export class GameMode {
             return 5;
         })
         Timers.CreateTimer(1, () => {
-            for (let i = 0; i < 4; i++)
-                new Wave("dire_spawn_1", "dire_spawn_1_1", "npc_dota_creep_badguys_melee", DotaTeam.BADGUYS)
-            return 45;
+            //for (let i = 0; i < 4; i++)
+            // new Wave("dire_spawn_1", "dire_spawn_1_1", "npc_dota_creep_badguys_melee", DotaTeam.BADGUYS)
+            new Wave("dire_spawn_2", "dire_spawn_1_1", "npc_dota_creep_badguys_melee", DotaTeam.BADGUYS)
+            return 2;
+        })
+        Timers.CreateTimer(6, () => {
+            //for (let i = 0; i < 4; i++)
+            new Wave("dire_spawn_1", "dire_spawn_1_1", "npc_dota_creep_badguys_melee", DotaTeam.BADGUYS)
+            // new Wave("dire_spawn_2", "dire_spawn_1_1", "npc_dota_creep_badguys_melee", DotaTeam.BADGUYS)
+            return 3;
         })
 
         Timers.CreateTimer(5, () => {
@@ -124,6 +131,20 @@ export class GameMode {
             }
             return 5.0; // Повторяем таймер каждые 10 секунд
         });
+
+        Timers.CreateTimer(5, () => {
+            let good_boss_spawn = Entities.FindByName(undefined, "good_boss_spawn")!.GetAbsOrigin()
+            let good_boss = CreateUnitByName("npc_good_boss", good_boss_spawn, true, void 0, void 0, DotaTeam.GOODGUYS)
+            // Timers.CreateTimer(5, () => {
+            //     good_boss.MoveToPositionAggressive(GetGroundPosition(good_boss_spawn, undefined))
+            //     return 15;
+            // })
+            for (let i = 1; i <= 6; i++) {
+                let bad_boss_spawn = Entities.FindByName(undefined, `bad_boss_spawn${i}`)!.GetAbsOrigin()
+                let bad_boss = CreateUnitByName("npc_bad_boss", bad_boss_spawn, true, void 0, void 0, DotaTeam.BADGUYS)
+            }
+        })
+
     }
 
     // Called on script_reload

@@ -7,7 +7,6 @@
 	// Note: This is loaded and overriden/added to by values in the specific heroes chunks.
 	//=================================================================================
 	"npc_dota_units_base"
-
 	// Units: Base
 	{
 		// General
@@ -115,6 +114,280 @@
 
 		"IdleSoundLoop"				""
 	}	
+
+	"npc_good_boss"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creep_neutral"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"6"
+		"IsAncient"					"1"
+		"ModelScale" 					"1.3"
+		"IsNeutralUnitType"			"1"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"granite_golem_hp_aura"			// Ability 1
+		"Ability2"					"undying_tombstone"			// Ability 2
+		"Ability3"					"broodmother_spawn_spiderlings"			// Ability 3
+		"Ability4"					"centaur_hoof_stomp"			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"100"			// Physical protection.
+		"MagicalResistance"				"30"		// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"3800"		// Damage range min.
+		"AttackDamageMax"			"3840"		// Damage range max.	
+		"AttackRate"				"2"		// Speed of attack.
+		"BaseAttackSpeed"			"150"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"2500"		// Range within a target can be acquired.
+		"AttackRange"				"128"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"60"
+		"HealthBarOffset"			"220"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"124"		// Experience earn.
+		"BountyGoldMin"				"76"		// Gold earned min.
+		"BountyGoldMax"				"80"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"270"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"15500"		// Base health.
+		"StatusHealthRegen"			"60.5"		// Health regeneration rate.
+		"StatusMana"				"600"		// Base mana.
+		"StatusManaRegen"			"1.5"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"							// Team name.
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			// ?
+			"PermanentDesire"  "1"
+			"CanRespawn"				"1"
+
+			//Level Up Parameters
+			//------------------------------------------------------------
+			"HPGain"					"350"
+			"DamageGain"				"35"
+			"ArmorGain"					"1"
+			"MagicResistGain"			"5"
+			"MoveSpeedGain"				"5"
+			"BountyGain"				"50"
+			"XPGain"					"50"
+			"DefaultState"  "Invade"
+
+			"States"
+			{
+				"Invade"
+				{
+					"Name"          "Invade"
+					"Aggression"    "1000.0"
+					"Avoidance"     "0.0"
+					"Support"       "0.0"
+					"RoamDistance"  "2000.0"
+				}
+			}
+			
+			"OffensiveAbilities"
+			{
+				"Ability1"                
+				{
+					"Name"        "broodmother_spawn_spiderlings"
+				}
+				"Ability2"
+				{
+					"Name"        "centaur_hoof_stomp"
+
+					//Targeting Parameters
+					"Radius"             "275"
+					"MinimumTargets"     "2"
+					"UseAtHealthPercent" "50"
+					"UseSelfishly"       "1"
+
+					//Ability Descriptors
+					"AOE"          "1"
+					"Debuff"       "1"
+					"Buff"         "1"
+					"Stun"         "1"
+					"Damage"       "1"
+					"Heal"         "1"
+				}
+			}
+			"DefensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"           "undying_tombstone"
+					"AOE"            "1"
+					"Radius"         "1000"
+					"MinimumTargets" "1"
+				}
+			}
+		}
+	}		
+	"npc_bad_boss"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creep_neutral"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"6"
+		"IsAncient"					"1"
+		"ModelScale" 					"1.3"
+		"IsNeutralUnitType"			"1"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"granite_golem_hp_aura"			// Ability 1
+		"Ability2"					"undying_tombstone"			// Ability 2
+		"Ability3"					"broodmother_spawn_spiderlings"			// Ability 3
+		"Ability4"					"centaur_hoof_stomp"			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"100"			// Physical protection.
+		"MagicalResistance"				"30"		// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"800"		// Damage range min.
+		"AttackDamageMax"			"840"		// Damage range max.	
+		"AttackRate"				"2"		// Speed of attack.
+		"BaseAttackSpeed"			"150"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"2500"		// Range within a target can be acquired.
+		"AttackRange"				"128"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"60"
+		"HealthBarOffset"			"220"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"124"		// Experience earn.
+		"BountyGoldMin"				"76"		// Gold earned min.
+		"BountyGoldMax"				"80"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"450"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"15500"		// Base health.
+		"StatusHealthRegen"			"80.5"		// Health regeneration rate.
+		"StatusMana"				"600"		// Base mana.
+		"StatusManaRegen"			"1.5"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"							// Team name.
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			// ?
+			"PermanentDesire"  "1"
+			"CanRespawn"				"1"
+
+			//Level Up Parameters
+			//------------------------------------------------------------
+			"HPGain"					"350"
+			"DamageGain"				"35"
+			"ArmorGain"					"1"
+			"MagicResistGain"			"5"
+			"MoveSpeedGain"				"5"
+			"BountyGain"				"50"
+			"XPGain"					"50"
+			"DefaultState"  "Invade"
+
+			"States"
+			{
+				"Invade"
+				{
+					"Name"          "Invade"
+					"Aggression"    "1000.0"
+					"Avoidance"     "0.0"
+					"Support"       "0.0"
+					"RoamDistance"  "2000.0"
+				}
+			}
+			
+			"OffensiveAbilities"
+			{
+				"Ability1"                
+				{
+					"Name"        "broodmother_spawn_spiderlings"
+				}
+				"Ability2"
+				{
+					"Name"        "centaur_hoof_stomp"
+
+					//Targeting Parameters
+					"Radius"             "275"
+					"MinimumTargets"     "2"
+					"UseAtHealthPercent" "50"
+					"UseSelfishly"       "1"
+
+					//Ability Descriptors
+					"AOE"          "1"
+					"Debuff"       "1"
+					"Buff"         "1"
+					"Stun"         "1"
+					"Damage"       "1"
+					"Heal"         "1"
+				}
+			}
+			"DefensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"           "undying_tombstone"
+					"AOE"            "1"
+					"Radius"         "1000"
+					"MinimumTargets" "1"
+				}
+			}
+		}
+	}		
+
 //=================================================================================
 // THINKER
 //=================================================================================
@@ -736,7 +1009,7 @@
 		"BaseClass"					"npc_dota_creep_lane"	// Class of entity of link to.
 		"Model"						"models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"	// Model.
 		"SoundSet"					"Creep_Bad_Melee"					// Name of sound set.
-		"ModelScale" 					"2.93"
+		"ModelScale" 					".93"
 		"Level"						"3"
 		
 		// Abilities
@@ -759,10 +1032,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"190"		// Damage range min.
-		"AttackDamageMax"			"530"		// Damage range max.
+		"AttackDamageMin"			"90"		// Damage range min.
+		"AttackDamageMax"			"130"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.2"			// Speed of attack.
+		"AttackRate"				"0.4"			// Speed of attack.
 		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
@@ -781,9 +1054,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"507"		// Experience earn.
-		"BountyGoldMin"				"340"		// Gold earned min.
-		"BountyGoldMax"				"390"		// Gold earned max.
+		"BountyXP"					"57"		// Experience earn.
+		"BountyGoldMin"				"64"		// Gold earned min.
+		"BountyGoldMax"				"69"		// Gold earned max.
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -794,12 +1067,12 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"225"		// Speed
+		"MovementSpeed"				"525"		// Speed
 		"MovementTurnRate"			"0.5"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2550"		// Base health.
+		"StatusHealth"				"650"		// Base health.
 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -12253,8 +12526,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"250"		// Damage range min.
-		"AttackDamageMax"			"300"		// Damage range max.	
+		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
 		"AttackRate"				"1.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.26"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"5000"		// Range within a target can be acquired.
